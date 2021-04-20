@@ -54,7 +54,7 @@ router.post(
 /* GET individual book */
 router.get(
   "/:id",
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const book = await Book.findByPk(req.params.id);
     if (book) {
       res.render("update-book", { book });
@@ -62,7 +62,7 @@ router.get(
       const err = new Error("404 Not Found");
       err.status = 404;
       err.message = "Sorry! The page you are looking for cannot be found.";
-      res.render("page-not-found", { err });
+      next(err);
     }
   })
 );
@@ -70,7 +70,7 @@ router.get(
 /* POST update book */
 router.post(
   "/:id",
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const book = await Book.findByPk(req.params.id);
     if (book) {
       await book.update(req.body);
@@ -79,7 +79,7 @@ router.post(
       const err = new Error("404 Not Found");
       err.status = 404;
       err.message = "Sorry! The page you are looking for cannot be found.";
-      res.render("page-not-found", { err });
+      next(err);
     }
   })
 );
@@ -96,7 +96,7 @@ router.post(
       const err = new Error("404 Not Found");
       err.status = 404;
       err.message = "Sorry! The page you are looking for cannot be found.";
-      res.render("page-not-found", { err });
+      next(err);
     }
   })
 );
