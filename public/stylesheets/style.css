@@ -1,6 +1,11 @@
 body {
   padding: 10px 50px 50px;
-  font: 18px "Garamond", serif;
+  font: 18px "Papyrus", sans-serif;
+  background: url(/static/images/wp2036897-books-wallpapers.jpg) repeat center
+    center fixed;
+  background-size: contain;
+  height: 100%;
+  overflow: hidden;
 }
 
 a {
@@ -56,10 +61,16 @@ h2 {
   padding-top: 20px;
 }
 
+table {
+  background-color: antiquewhite;
+  box-shadow: 0px 0px 5px 3px black;
+}
+
 th {
   border-bottom: 2px solid #d8b493;
   text-align: left;
   padding: 5px 20px 5px 10px;
+  background-color: #ffffff;
 }
 
 tr {
