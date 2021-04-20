@@ -54,8 +54,9 @@ router.get(
 router.post(
   "/:id",
   asyncHandler(async (req, res) => {
-    const book = await Book.update(req.params.id);
-    res.redirect("/books" + book.id);
+    const book = await Book.findByPk(req.params.id);
+    await book.update(req.body);
+    res.redirect("/books");
   })
 );
 
