@@ -3,7 +3,7 @@ extends Layout
 block content
   h1= 'Books'
   p 
-    a(href="./new-book.pug" class="button")= 'Create New Book'
+    a(href="/books/new" class="button")= 'Create New Book'
   table 
     thead 
       tr  
@@ -12,5 +12,11 @@ block content
         th= "Genre"
         th= 'Year'
     tbody   
-      //each val in booksFromDb
+      each book in books 
+        tr
+          td  
+            a(href="/books/" + book.id)= book.title 
+          td= book.author 
+          td= book.genre 
+          td= book.year
 

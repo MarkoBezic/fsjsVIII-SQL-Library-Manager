@@ -14,20 +14,48 @@ function asyncHandler(cb) {
   };
 }
 
-// /* GET home route and redirect to /books */
-// router.get(
-//   "/",
-//   asyncHandler(async (req, res, next) => {
-//     res.redirect("/books");
-//   })
-// );
-
-/* GET full list books */
+/* GET books listing */
 router.get(
-  "/books",
-  asyncHandler(async (req, res, next) => {
+  "/",
+  asyncHandler(async (req, res) => {
     const books = await Book.findAll();
-    res.render("/books", { books });
+    console.log(books);
+    res.render("books", { books });
+  })
+);
+
+/* GET new book form */
+router.get(
+  "/new",
+  asyncHandler(async (req, res) => {
+    res.render("new-book");
+  })
+);
+
+/* POST new book record */
+router.post(
+  "/new",
+  asyncHandler(async (req, res) => {
+    let book = await Book.create(req.body);
+    res.redirect("/books/" + book.id);
+  })
+);
+
+/* GET individual book */
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    res.render("update-book", { book });
+  })
+);
+
+/* POST update book */
+router.post(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const book = await Book.update(req.params.id);
+    res.redirect("/books" + book.id);
   })
 );
 

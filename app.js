@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use("/static", express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-// app.use("/books", booksRouter);
+app.use("/books", booksRouter);
 
 //async IIFE
 (async () => {
