@@ -59,7 +59,10 @@ router.get(
     if (book) {
       res.render("update-book", { book });
     } else {
-      res.sendStatus(404);
+      const err = new Error("404 Not Found");
+      err.status = 404;
+      err.message = "Sorry! The page you are looking for cannot be found.";
+      res.render("page-not-found", { err });
     }
   })
 );
@@ -73,7 +76,10 @@ router.post(
       await book.update(req.body);
       res.redirect("/books");
     } else {
-      res.sendStatus(404);
+      const err = new Error("404 Not Found");
+      err.status = 404;
+      err.message = "Sorry! The page you are looking for cannot be found.";
+      res.render("page-not-found", { err });
     }
   })
 );
@@ -87,7 +93,10 @@ router.post(
       await book.destroy();
       res.redirect("/books");
     } else {
-      res.sendStatus(404);
+      const err = new Error("404 Not Found");
+      err.status = 404;
+      err.message = "Sorry! The page you are looking for cannot be found.";
+      res.render("page-not-found", { err });
     }
   })
 );

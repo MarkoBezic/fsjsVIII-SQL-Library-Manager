@@ -2,14 +2,14 @@ extends layout
 
 block content 
   h1= 'New Book'
-  form
+  form(method="post")
     h2(class="error")= "Oooops!"
     ul(class="error")
       each error in errors
         li= error.message
     p   
       label(for="title")= 'Title'
-      input(name="titile" type="text" id="title" value= book.title)
+      input(name="title" type="text" id="title" value= book.title )
     p 
       label(for="author")= 'Author'
       input(name="author" type="text" id="author" value= book.author)
