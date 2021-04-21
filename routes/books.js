@@ -19,11 +19,39 @@ function asyncHandler(cb) {
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const books = await Book.findAll();
-    console.log(books);
-    res.render("books", { books });
+    res.redirect("/books/page/1");
+    // const books = await Book.findAll();
+    // const numberOfPages = await Book.findAll().then((data) => {
+    //   let result = Math.ceil(data.length / 5);
+    //   return result;
+    // });
+    // console.log(numberOfPages);
+    // // const paginatedBooks = await Book.findAll({
+    // //   offset: req.params.page - 1 * 5,
+    // //   limit: 5,
+    // // });
+    // res.render("books", { books, pages: numberOfPages });
   })
 );
+
+router.get(
+  "/page/:page",
+  asyncHandler(async (req, res) => {
+    const numberOfPages = await Book.findAll().then((data) => {
+      let result = Math.ceil(data.length / 5);
+      return result;
+    });
+    console.log(numberOfPages);
+    const paginatedBooks = await Book.findAll({
+      offset: (req.params.page - 1) * 5,
+      limit: 5,
+    });
+    res.render("books", { books: paginatedBooks, pages: numberOfPages });
+  })
+);
+
+/* GET paginated book listing */
+/// todo
 
 /* Post searched books listing */
 router.post(
