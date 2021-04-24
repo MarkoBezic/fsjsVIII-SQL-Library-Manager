@@ -20,17 +20,6 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     res.redirect("/books/page/1");
-    // const books = await Book.findAll();
-    // const numberOfPages = await Book.findAll().then((data) => {
-    //   let result = Math.ceil(data.length / 5);
-    //   return result;
-    // });
-    // console.log(numberOfPages);
-    // // const paginatedBooks = await Book.findAll({
-    // //   offset: req.params.page - 1 * 5,
-    // //   limit: 5,
-    // // });
-    // res.render("books", { books, pages: numberOfPages });
   })
 );
 
