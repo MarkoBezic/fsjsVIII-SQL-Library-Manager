@@ -39,9 +39,6 @@ router.get(
   })
 );
 
-/* GET paginated book listing */
-/// todo
-
 /* Post searched books listing */
 router.post(
   "/",
